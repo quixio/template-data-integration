@@ -5,7 +5,21 @@ metadata:
   version: 1.0
 
 # This section describes the Deployments of the data pipeline
-deployments: []
+deployments:
+  - name: telemetry-web-sockets
+    application: telemetry-web-sockets
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    variables:
+      - name: output
+        inputType: OutputTopic
+        description: Output topic
+        required: true
+        value: telemetry
 
 # This section describes the Topics of the data pipeline
 topics:
