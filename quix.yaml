@@ -75,6 +75,25 @@ deployments:
         description: ''
         required: true
         value: glue.tomas-snakecheating-dev-clickstream
+  - name: Downsampling
+    application: normalization
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: Name of the input topic to listen to.
+        required: false
+        value: telemetry
+      - name: output
+        inputType: OutputTopic
+        description: Name of the output topic to write to.
+        required: false
+        value: downsampled
 
 # This section describes the Topics of the data pipeline
 topics:
