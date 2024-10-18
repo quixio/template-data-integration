@@ -75,6 +75,42 @@ deployments:
         description: ''
         required: true
         value: glue.tomas-snakecheating-dev-clickstream
+  - name: Raw S3 Sink
+    application: s3-sink
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    variables:
+      - name: input
+        inputType: InputTopic
+        required: false
+        value: telemetry
+      - name: AWS_SECRET_ACCESS_KEY
+        inputType: Secret
+        description: ''
+        required: false
+        secretKey: s3_secret_key
+      - name: AWS_S3_URI
+        inputType: FreeText
+        description: ''
+        required: true
+        value: s3://sneak-data/tomas-snakecheating-dev-clickstream
+      - name: AWS_ACCESS_KEY_ID
+        inputType: FreeText
+        required: false
+        value: AKIA5JJJFC76E24MEO5M
+      - name: AWS_DEFAULT_REGION
+        inputType: FreeText
+        required: false
+        value: eu-north-1
+      - name: table_name
+        inputType: FreeText
+        description: ''
+        required: true
+        value: glue.tomas-snakecheating-dev-clickstream
 
 # This section describes the Topics of the data pipeline
 topics:
