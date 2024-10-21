@@ -6,20 +6,6 @@ metadata:
 
 # This section describes the Deployments of the data pipeline
 deployments:
-  - name: Telemetry Ingestion
-    application: telemetry-web-sockets
-    version: latest
-    deploymentType: Service
-    resources:
-      cpu: 200
-      memory: 500
-      replicas: 1
-    variables:
-      - name: output
-        inputType: OutputTopic
-        description: Output topic
-        required: true
-        value: telemetry
   - name: Transformation
     application: normalization
     version: latest
@@ -111,6 +97,20 @@ deployments:
         description: ''
         required: true
         value: glue.tomas-snakecheating-dev-clickstream
+  - name: Data Ingestion
+    application: telemetry-web-sockets
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    variables:
+      - name: output
+        inputType: OutputTopic
+        description: Output topic
+        required: true
+        value: telemetry
 
 # This section describes the Topics of the data pipeline
 topics:
